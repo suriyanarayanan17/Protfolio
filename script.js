@@ -42,3 +42,25 @@ const observer = new IntersectionObserver((entries) => {
 // Observe elements that should animate on scroll
 document.querySelectorAll('.home-content, .about-content, .Education-img, .skills-img, .contact-container')
     .forEach((el) => observer.observe(el));
+
+// Menu toggle functionality
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('.nav-menu');
+
+menuToggle.addEventListener('click', () => {
+  navMenu.classList.toggle('show');
+});
+
+// Close menu when clicking a link
+document.querySelectorAll('.nav-menu a').forEach(link => {
+  link.addEventListener('click', () => {
+    navMenu.classList.remove('show');
+  });
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.header')) {
+    navMenu.classList.remove('show');
+  }
+});
